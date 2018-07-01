@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Http\Resources\Post as PostResource;
 use App\Repositories\Post as PostRepository;
 
 class Post extends BaseService
@@ -14,6 +15,6 @@ class Post extends BaseService
 
     public function getAllPosts()
     {
-        return $this->post_repository->getAllPosts();
+         return PostResource::collection($this->post_repository->getAllPosts());
     }
 }
