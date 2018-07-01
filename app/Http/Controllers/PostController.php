@@ -15,8 +15,25 @@ class PostController extends BaseController
         $this->post_service = $post_service;
     }
 
+    /**
+     * Post一覧を表示
+     *
+     * @return mixed
+     */
     public function index()
     {
         return $this->post_service->getAllPosts();
+    }
+
+
+    /**
+     * 特定IDのPostを取得
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function show(int $id)
+    {
+        return $this->post_service->getPostById($id);
     }
 }

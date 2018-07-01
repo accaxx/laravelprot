@@ -1,10 +1,9 @@
 <?php
 namespace App\Http\Resources;
 
-use App\Http\Resources\Comment as CommentResource;
 use Illuminate\Http\Resources\Json\Resource;
 
-class Post extends Resource
+class Comment extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +15,8 @@ class Post extends Resource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'body' => $this->body,
-            'comments' => CommentResource::collection($this->comments)
+            'post_id' => $this->post_id,
+            'body' => $this->body
         ];
     }
 }

@@ -16,4 +16,9 @@ class Post extends BaseRepository
     {
         return $this->post_model->all();
     }
+
+    public function getPostById(int $id)
+    {
+        return $this->post_model->findOrFail($id);
+    }
 }

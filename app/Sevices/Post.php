@@ -13,8 +13,24 @@ class Post extends BaseService
         $this->post_repository = $post_repository;
     }
 
+    /**
+     * 全てのPostを取得し成型してJsonで返す
+     *
+     * @return mixed
+     */
     public function getAllPosts()
     {
          return PostResource::collection($this->post_repository->getAllPosts());
+    }
+
+    /**
+     * IDからPostを取得し成型してJsonで返す
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function getPostById(int $id)
+    {
+        return new PostResource($this->post_repository->getPostById($id));
     }
 }
