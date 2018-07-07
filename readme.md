@@ -17,7 +17,8 @@
 - APIリソース追加
   
 ## how to use
-``` git clone git@github.com:aihara005/laravelprot.git
+``` 
+ git clone git@github.com:aihara005/laravelprot.git
  composer install
  npm install
  vi .env // 適当に.env用意する
