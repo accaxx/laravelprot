@@ -14,7 +14,9 @@ class Post extends BaseRepository
 
     public function getAllPosts()
     {
-        return $this->post_model->all();
+        return $this->post_model
+            ->where('show_flag', FLAG_ON)
+            ->get();
     }
 
     public function getPostById(int $id)
