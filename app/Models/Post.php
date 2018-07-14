@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = [
+    public $fillable = [
         'title',
         'body',
         'show_flag'
