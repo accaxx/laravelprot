@@ -12,6 +12,11 @@ class Post extends BaseRepository
         $this->post_model = $post_model;
     }
 
+    /**
+     * フラグがonのPostをすべて取得する
+     *
+     * @return mixed
+     */
     public function getAllPosts()
     {
         return $this->post_model
@@ -19,8 +24,25 @@ class Post extends BaseRepository
             ->get();
     }
 
+    /**
+     * 指定IDのPostを取得する
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function getPostById(int $id)
     {
         return $this->post_model->findOrFail($id);
+    }
+
+    /**
+     * 入力からPostを作成する
+     *
+     * @param $input
+     * @return mixed
+     */
+    public function createPost($input)
+    {
+        return $this->post_model->create($input);
     }
 }

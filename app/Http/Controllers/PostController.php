@@ -25,7 +25,6 @@ class PostController extends BaseController
         return $this->post_service->getAllPosts();
     }
 
-
     /**
      * 特定IDのPostを取得
      *
@@ -35,5 +34,16 @@ class PostController extends BaseController
     public function show(int $id)
     {
         return $this->post_service->getPostById($id);
+    }
+
+    /**
+     * Postを作成する
+     *
+     * @param Request $request
+     */
+    public function create(Request $request)
+    {
+        $this->post_service->createPost($request->data);
+        return $this->getSuccessResponse();
     }
 }
