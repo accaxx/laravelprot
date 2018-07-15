@@ -33,4 +33,14 @@ class Post extends BaseService
     {
         return new PostResource($this->post_repository->getPostById($id));
     }
+
+    /**
+     * Postを作成
+     *
+     * @param $input
+     */
+    public function createPost($input)
+    {
+        return $this->post_repository->createPost($input);
+    }
 }
