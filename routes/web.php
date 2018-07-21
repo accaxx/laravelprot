@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/', 'PostController@index');
+
 // post
 Route::get('/posts', 'PostController@index');
 Route::get('/posts/{id}', 'PostController@show');
@@ -18,3 +20,8 @@ Route::post('/posts', 'PostController@create');
 
 // comment
 Route::post('/comments', 'CommentController@create');
+
+// vue
+Route::get('/{any}', function () {
+    return view('app');
+})->where('any', '.*');
