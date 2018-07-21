@@ -19,6 +19,6 @@
             return {
                 msg: 'test'
             }
-        }
+        },
     }
 </script>
