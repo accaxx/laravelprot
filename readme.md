@@ -15,6 +15,7 @@
   - Resource
 
 - APIリソース追加
+- Nuxt.js環境へ変更
   
 ## how to use
 ``` 
