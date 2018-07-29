@@ -1,10 +1,15 @@
 <template>
-    <div> {{ data }}</div>
+    <div class="container">
+        <h1 class="title">LaraVue Blog App</h1>
+        <ul>
+            <li v-for="post in data.data">{{ post.title }}</li>
+        </ul>
+    </div>
 </template>
 
 <script>
 export default {
-  async asyncData({app}){
+    async asyncData({app}){
     const data = await app.$axios.$get('http://localhost:8000/')
     return {data};
   }
@@ -12,33 +17,29 @@ export default {
 </script>
 
 <style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    body {
+        font-size: 16px;
+        font-family: Verdana, sans-serif;
+    }
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+    .container {
+        width:500px;
+        margin:auto;
+    }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+    h1 {
+        font-size: 16px;
+        border-bottom: 1px solid #ddd;
+        padding: 16px 0;
+    }
 
-.links {
-  padding-top: 15px;
-}
+    li {
+        line-height: 1.5;
+    }
+
+    ul {
+        padding: 0;
+        list-style: none;
+    }
 </style>
 
