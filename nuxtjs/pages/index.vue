@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1 class="title">LaraVue Blog App</h1>
+        <h1 class="title">LaraVue Blog App<a href="/posts/create"> + post</a></h1>
         <ul>
             <li v-for="post in posts.data">
                 <a v-bind:href="'/posts/' + post.id">
@@ -35,6 +35,20 @@ export default {
         font-size: 16px;
         border-bottom: 1px solid #ddd;
         padding: 16px 0;
+    }
+
+    h1 a {
+        float: right;
+        color: #1f648b;
+        text-decoration: none;
+    }
+
+    h1 a:hover {
+        color: #2ab27b;
+    }
+
+    a:visited {
+        color: #a94442;
     }
 
     li {
