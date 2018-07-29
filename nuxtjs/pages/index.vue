@@ -2,7 +2,11 @@
     <div class="container">
         <h1 class="title">LaraVue Blog App</h1>
         <ul>
-            <li v-for="post in posts.data">{{ post.title }} ({{ post.comments.length }})</li>
+            <li v-for="post in posts.data">
+                <a v-bind:href="'/posts/' + post.id">
+                    {{ post.title }} ({{ post.comments.length }})
+                </a>
+            </li>
         </ul>
     </div>
 </template>
