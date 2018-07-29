@@ -20,9 +20,10 @@
 ``` 
  git clone git@github.com:aihara005/laravelprot.git
  composer install
- npm install
+ yarn install
  vi .env // 適当に.env用意する
  posts / commentsデータとDB用意、DB接続
  php artisan serve
- access to http://127.0.0.1:8000/posts
-```
+ yarn run dev
+ access to http://127.0.0.1:3000
+ ```
