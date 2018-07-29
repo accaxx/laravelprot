@@ -2,16 +2,16 @@
     <div class="container">
         <h1 class="title">LaraVue Blog App</h1>
         <ul>
-            <li v-for="post in data.data">{{ post.title }}</li>
+            <li v-for="post in posts.data">{{ post.title }} ({{ post.comments.length }})</li>
         </ul>
     </div>
 </template>
 
 <script>
 export default {
-    async asyncData({app}){
-    const data = await app.$axios.$get('http://localhost:8000/')
-    return {data};
+    async asyncData({ app }) {
+    const posts = await app.$axios.$get('http://localhost:8000/')
+    return {posts};
   }
 }
 </script>
