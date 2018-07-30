@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Resources;
 
+use App\Http\Resources\Category as CategoryResource;
 use App\Http\Resources\Comment as CommentResource;
 use Illuminate\Http\Resources\Json\Resource;
 
@@ -18,7 +19,8 @@ class Post extends Resource
             'id' => $this->id,
             'title' => $this->title,
             'body' => $this->body,
-            'comments' => CommentResource::collection($this->comments)
+            'comments' => CommentResource::collection($this->comments),
+            'categories' => CategoryResource::collection($this->categories)
         ];
     }
 }
