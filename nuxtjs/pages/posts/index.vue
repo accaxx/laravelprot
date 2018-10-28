@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <h1 class="title">LaraVue Blog App<a href="/posts/create"> + post</a></h1>
+        <h1 class="title">Search</h1>
+        search by : {{ query }}
         <ul>
             <li v-for="post in posts.data">
                 <a v-bind:href="'/posts/' + post.id">
@@ -8,26 +9,19 @@
                 </a>
             </li>
         </ul>
-
-        <div class="category">
-            <h1 class="category">Category</h1>
-            <ul>
-                <li v-for="category in categories.data">
-                    <a v-bind:href="'/posts?category=' + category.id">
-                        {{ category.name }}
-                    </a>
-                </li>
-            </ul>
-        </div>
     </div>
 </template>
 
 <script>
 export default {
-    async asyncData({ app }) {
-    const posts = await app.$axios.$get('http://localhost:8000/posts')
-    const categories = await app.$axios.$get('http://localhost:8000/categories')
-    return {posts, categories};
+    async asyncData({ app, query }) {
+    let posts = await app.$axios.$get(`http://localhost:8000/posts`,
+        {
+            params: {
+                query
+            }
+        })
+    return {posts, query};
   }
 }
 </script>

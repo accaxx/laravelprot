@@ -9,7 +9,7 @@
         </ul>
         <h1 class="category">category</h1>
         <ul>
-            <li v-for="category in data.categories">{{ category }}</li>
+            <li v-for="category in data.categories">{{ category.name }}</li>
         </ul>
     </div>
 </template>
