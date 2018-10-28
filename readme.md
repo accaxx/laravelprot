@@ -2,7 +2,7 @@
 
 ## 動作確認環境
 - Laravel 5.5.40
-- PHP 7.1.14
+- PHP 7.2.4
 - Apache 2.4.28
 - MySQL 5.7.20
 
@@ -16,6 +16,7 @@
 
 - APIリソース追加
 - Nuxt.js環境へ変更
+- PHP 7.2系へ変更
   
 ## how to use
 ``` 
