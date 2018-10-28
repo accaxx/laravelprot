@@ -27,7 +27,7 @@
                 let params = new URLSearchParams();
                 params.append('title', this.title);
                 params.append('body', this.body);
-                params.append('shoq_flag', this.show_flag);
+                params.append('show_flag', this.show_flag);
                 axios.post('http://localhost:8000/posts', params);
             }
         }
