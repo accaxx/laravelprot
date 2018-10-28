@@ -7,6 +7,10 @@
         <ul>
             <li v-for="comment in data.comments">{{ comment.body }}</li>
         </ul>
+        <h1 class="category">category</h1>
+        <ul>
+            <li v-for="category in data.categories">{{ category }}</li>
+        </ul>
     </div>
 </template>
 
