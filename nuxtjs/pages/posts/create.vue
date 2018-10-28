@@ -28,7 +28,7 @@
                 params.append('title', this.title);
                 params.append('body', this.body);
                 params.append('show_flag', this.show_flag);
-                axios.post('/posts' + params);
+                axios.post('http://localhost:8000/posts', params);
             }
         }
     }
