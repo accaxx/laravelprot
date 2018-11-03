@@ -1,29 +1,16 @@
 <template>
     <div class="container">
         <h1 class="title">Search</h1>
-        search by : {{ query }}
+        search by :
         <ul>
-            <li v-for="post in posts.data">
-                <a v-bind:href="'/posts/' + post.id">
-                    {{ post.title }} ({{ post.comments.length }})
-                </a>
-            </li>
         </ul>
     </div>
 </template>
 
 <script>
 export default {
-    async asyncData({ app, query }) {
-    let posts = await app.$axios.$get(`http://localhost:8000/posts`,
-        {
-            params: {
-                query
-            }
-        })
-    return {posts, query};
-  }
 }
+
 </script>
 
 <style>

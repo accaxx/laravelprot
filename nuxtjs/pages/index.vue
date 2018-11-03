@@ -12,11 +12,16 @@
         <div class="category">
             <h1 class="category">Category</h1>
             <ul>
-                <li v-for="category in categories.data">
-                    <a v-bind:href="'/posts?category=' + category.id">
-                        {{ category.name }}
-                    </a>
-                </li>
+                <router-link
+                    tag="li"
+                    is-link="true"
+                    v-for="(item, index) in categories.data"
+                    :key="index"
+                    :to="{ path: 'posts', query: { category: item.id}}"
+                    replace
+                >
+                    {{ item.name }}
+                </router-link>
             </ul>
         </div>
     </div>
@@ -24,11 +29,11 @@
 
 <script>
 export default {
-    async asyncData({ app }) {
-    const posts = await app.$axios.$get('http://localhost:8000/posts')
-    const categories = await app.$axios.$get('http://localhost:8000/categories')
-    return {posts, categories};
-  }
+        async asyncData({ app }) {
+        const posts = await app.$axios.$get('http://localhost:8000/posts')
+        const categories = await app.$axios.$get('http://localhost:8000/categories')
+        return {posts, categories};
+    },
 }
 </script>
 
