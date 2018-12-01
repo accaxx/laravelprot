@@ -6,6 +6,7 @@ use App\Models\Post as PostModel;
 class Post extends BaseRepository
 {
     private $post_model;
+    const MAX_SHOW_COUNT_FOR_POSTS = 10;
 
     public function __construct(PostModel $post_model)
     {
@@ -21,7 +22,7 @@ class Post extends BaseRepository
     {
         return $this->post_model
             ->where('show_flag', FLAG_ON)
-            ->get();
+            ->paginate(self::MAX_SHOW_COUNT_FOR_POSTS);
     }
 
     /**
@@ -39,10 +40,7 @@ class Post extends BaseRepository
                 ->where('categories.id', $query['category']);
         }
 
-//        foreach($query as $key => $value) {
-//           $base_query->where($key, $value);
-//        }
-        return $base_query->get();
+        return $base_query->paginate(self::MAX_SHOW_COUNT_FOR_POSTS);
     }
 
     /**

@@ -20,6 +20,7 @@ class Post extends BaseService
      */
     public function getAllPosts(?array $query)
     {
+        // クエリパラメータの指定がなければ全てのPostを返す
         if (is_null($query)) {
             return PostResource::collection($this->post_repository->getAll());
         }
@@ -41,6 +42,7 @@ class Post extends BaseService
      * Postを作成
      *
      * @param $input
+     * @return mixed
      */
     public function createPost($input)
     {

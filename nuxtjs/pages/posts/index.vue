@@ -3,14 +3,23 @@
         <h1 class="title">Search</h1>
         search by :
         <ul>
+            <li v-for="post in posts.data">
+                <a v-bind:href="'/posts/' + post.id">
+                    {{ post.title }} ({{ post.comments.length }})
+                </a>
+            </li>
         </ul>
     </div>
 </template>
 
 <script>
 export default {
+    async asyncData({ app }) {
+        // this.routeの取得が途中
+        const posts = await app.$axios.get(this.$route, 'query.originalUrl')
+        return {posts};
+    },
 }
-
 </script>
 
 <style>
