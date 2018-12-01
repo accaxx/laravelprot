@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Post as PostService;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 
 class PostController extends BaseController
@@ -20,9 +21,9 @@ class PostController extends BaseController
      *
      * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->post_service->getAllPosts();
+        return $this->post_service->getAllPosts($request->query());
     }
 
     /**
@@ -40,6 +41,7 @@ class PostController extends BaseController
      * Postを作成する
      *
      * @param Request $request
+     * @return mixed
      */
     public function create(Request $request)
     {
