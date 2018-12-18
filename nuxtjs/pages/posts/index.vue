@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <h1 class="title">LaraVue Blog App<a href="/posts/create"> + post</a></h1>
+        <h1 class="title">Search</h1>
+        search by :
         <ul>
             <li v-for="post in posts.data">
                 <a v-bind:href="'/posts/' + post.id">
@@ -8,31 +9,15 @@
                 </a>
             </li>
         </ul>
-
-        <div class="category">
-            <h1 class="category">Category</h1>
-            <ul>
-                <router-link
-                    tag="li"
-                    is-link="true"
-                    v-for="(item, index) in categories.data"
-                    :key="index"
-                    :to="{ path: 'posts', query: { category: item.id}}"
-                    replace
-                >
-                    {{ item.name }}
-                </router-link>
-            </ul>
-        </div>
     </div>
 </template>
 
 <script>
 export default {
-        async asyncData({ app }) {
-        const posts = await app.$axios.$get('http://localhost:8000/posts')
-        const categories = await app.$axios.$get('http://localhost:8000/categories')
-        return {posts, categories};
+    async asyncData({ app }) {
+        // this.routeの取得が途中
+        const posts = await app.$axios.get(this.$route, 'query.originalUrl')
+        return {posts};
     },
 }
 </script>

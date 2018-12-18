@@ -18,9 +18,13 @@ class Post extends BaseService
      *
      * @return mixed
      */
-    public function getAllPosts()
+    public function getAllPosts(?array $query)
     {
-         return PostResource::collection($this->post_repository->getAllPosts());
+        // クエリパラメータの指定がなければ全てのPostを返す
+        if (is_null($query)) {
+            return PostResource::collection($this->post_repository->getAll());
+        }
+        return PostResource::collection($this->post_repository->getAllByQuery($query));
     }
 
     /**
@@ -31,16 +35,17 @@ class Post extends BaseService
      */
     public function getPostById(int $id)
     {
-        return new PostResource($this->post_repository->getPostById($id));
+        return new PostResource($this->post_repository->getById($id));
     }
 
     /**
      * Postを作成
      *
      * @param $input
+     * @return mixed
      */
     public function createPost($input)
     {
-        return $this->post_repository->createPost($input);
+        return $this->post_repository->create($input);
     }
 }

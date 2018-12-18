@@ -6,6 +6,7 @@ use App\Models\Post as PostModel;
 class Post extends BaseRepository
 {
     private $post_model;
+    const MAX_SHOW_COUNT_FOR_POSTS = 10;
 
     public function __construct(PostModel $post_model)
     {
@@ -17,11 +18,29 @@ class Post extends BaseRepository
      *
      * @return mixed
      */
-    public function getAllPosts()
+    public function getAll()
     {
         return $this->post_model
             ->where('show_flag', FLAG_ON)
-            ->get();
+            ->paginate(self::MAX_SHOW_COUNT_FOR_POSTS);
+    }
+
+    /**
+     * Queryが一致し かつ フラグがonのPostをすべて取得する
+     *
+     * @return mixed
+     */
+    public function getAllByQuery(array $query)
+    {
+        $base_query = $this->post_model->where('show_flag', FLAG_ON);
+
+        if (array_has($query, 'category')) {
+            $base_query->join('category_post', 'category_post.post_id', '=', 'posts.id')
+                ->join('categories', 'categories.id', '=', 'category_post.category_id')
+                ->where('categories.id', $query['category']);
+        }
+
+        return $base_query->paginate(self::MAX_SHOW_COUNT_FOR_POSTS);
     }
 
     /**
@@ -30,7 +49,7 @@ class Post extends BaseRepository
      * @param int $id
      * @return mixed
      */
-    public function getPostById(int $id)
+    public function getById(int $id)
     {
         return $this->post_model->findOrFail($id);
     }
@@ -41,7 +60,7 @@ class Post extends BaseRepository
      * @param $input
      * @return mixed
      */
-    public function createPost($input)
+    public function create($input)
     {
         return $this->post_model->create($input);
     }
